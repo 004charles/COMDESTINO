@@ -1,0 +1,53 @@
+version: 1
+
+workflows:
+  android-apk:
+    name: Build Android APK
+    max_build_duration: 60
+    instance_type: medium
+    environment:
+      node_version: '20'
+    triggering:
+      events:
+        - push
+        - tag
+        - pull_request
+      branch_patterns:
+        - pattern: '*'
+          include: true
+    vars:
+      # Troque pelo IP/domínio público do seu backend Django
+      # Ex: EXPO_PUBLIC_API_URL: 'https://api.seudominio.ao/api'
+      EXPO_PUBLIC_API_URL: 'http://192.168.146.9:8010/api'
+    steps:
+      - script:
+          name: Instalar dependências
+          script: |
+            cd frontend
+            npm ci || npm install
+      - script:
+          name: Typecheck
+          script: |
+            cd frontend
+            npx tsc --noEmit || true
+      - script:
+          name: Gerar projeto nativo Android (expo prebuild)
+          script: |
+            cd frontend
+            npx expo prebuild --platform android --clean
+      - script:
+          name: Build APK (release)
+          script: |
+            cd frontend/android
+            chmod +x ./gradlew
+            ./gradlew assembleRelease
+      - script:
+          name: Renomear APK
+          script: |
+            APK=$(find frontend/android/app/build/outputs/apk -name "*.apk" | head -1)
+            mkdir -p artifacts
+            cp "$APK" artifacts/Destino-v1.0.0.apk
+            ls -la artifacts/
+    artifacts:
+      - artifacts/Destino-v1.0.0.apk
+      - frontend/android/app/build/outputs/apk/**/*.apk

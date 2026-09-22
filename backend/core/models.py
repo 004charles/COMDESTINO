@@ -1,0 +1,14 @@
+import uuid
+
+from django.db import models
+
+
+class TimeStampedModel(models.Model):
+    """Modelo abstrato com campos de criação e atualização."""
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_at = models.DateTimeField("criado em", auto_now_add=True)
+    updated_at = models.DateTimeField("atualizado em", auto_now=True)
+
+    class Meta:
+        abstract = True
