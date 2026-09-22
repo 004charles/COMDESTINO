@@ -7,6 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
+      "image": "./assets/splash-icon.png",
       "backgroundColor": "#00A651",
       "resizeMode": "contain"
     },
@@ -16,7 +17,7 @@
     },
     "android": {
       "package": "ao.destino.app",
-      "versionCode": 1,
+      "versionCode": 2,
       "usesCleartextTraffic": true,
       "adaptiveIcon": {
         "backgroundColor": "#00A651",

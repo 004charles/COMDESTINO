@@ -30,7 +30,7 @@ export default function App() {
           }}
         >
           <RootNavigator />
-          <StatusBar style="light" backgroundColor={colors.green} />
+          <StatusBar style="light" />
         </NavigationContainer>
       </AuthProvider>
     </SafeAreaProvider>

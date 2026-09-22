@@ -7,6 +7,7 @@ import {
   Platform,
   ScrollView,
   Alert,
+  Image,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
@@ -45,7 +46,11 @@ export const LoginScreen: React.FC<Props> = ({ navigation }) => {
     >
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
         <View style={styles.logoBox}>
-          <Text style={styles.logo}>Destino</Text>
+          <Image
+            source={require('../../assets/logo-white.png')}
+            style={styles.logoImg}
+            resizeMode="contain"
+          />
           <Text style={styles.tagline}>Viaja por Angola · Bilhetes & Turismo</Text>
         </View>
 
@@ -92,7 +97,8 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   logo: { fontSize: 36, fontWeight: '900', color: colors.white, letterSpacing: -1 },
-  tagline: { color: colors.gold, marginTop: 6, fontWeight: '600', fontSize: 13 },
+  logoImg: { width: 200, height: 41 },
+  tagline: { color: colors.gold, marginTop: 10, fontWeight: '600', fontSize: 13 },
   title: { fontSize: 22, fontWeight: '800', color: colors.gray900, marginBottom: 20 },
   footer: { textAlign: 'center', color: colors.gray400, marginTop: 24, fontSize: 12 },
 });
