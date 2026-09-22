@@ -32,11 +32,16 @@ export const LoginScreen: React.FC<Props> = ({ navigation }) => {
     setLoading(true);
     try {
       await signIn(username.trim(), password);
-    } catch {
-      Alert.alert(
-        'Erro',
-        'Credenciais inválidas ou sem ligação ao servidor. Verifique o backend e a rede.'
-      );
+    } catch (e: any) {
+      if (!e?.response) {
+        Alert.alert(
+          'Sem ligação',
+          'Não foi possível contactar o servidor.\nVerifique se o backend está a correr e se o IP está correto.'
+        );
+      } else {
+        const detail = e?.response?.data?.detail;
+        Alert.alert('Erro no login', detail || 'Credenciais inválidas.');
+      }
     } finally {
       setLoading(false);
     }
@@ -61,7 +66,7 @@ export const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
         <Input
           label="Telefone, e-mail ou utilizador"
-          placeholder="+244 9XX XXX XXX"
+          placeholder="demo ou +244923000001"
           autoCapitalize="none"
           value={username}
           onChangeText={setUsername}
