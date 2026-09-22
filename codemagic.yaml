@@ -17,7 +17,7 @@ workflows:
       java: '17'
       vars:
         # URL do backend Django (troque para IP/domínio público em produção)
-        EXPO_PUBLIC_API_URL: 'http://192.168.146.9:8010/api'
+        EXPO_PUBLIC_API_URL: 'http://192.168.1.113:8010/api'
     scripts:
       - name: Instalar dependências
         script: |

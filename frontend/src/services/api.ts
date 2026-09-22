@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Emulador Android: http://10.0.2.2:8010/api
 // Dispositivo físico (dev): http://IP-DA-MAQUINA:8010/api
 export const API_URL =
-  process.env.EXPO_PUBLIC_API_URL ?? 'http://192.168.146.9:8010/api';
+  process.env.EXPO_PUBLIC_API_URL ?? 'http://192.168.1.113:8010/api';
 
 export const api = create({
   baseURL: API_URL,
