@@ -33,7 +33,10 @@ export const LoginScreen: React.FC<Props> = ({ navigation }) => {
     try {
       await signIn(username.trim(), password);
     } catch {
-      Alert.alert('Erro', 'Credenciais inválidas. Tente novamente.');
+      Alert.alert(
+        'Erro',
+        'Credenciais inválidas ou sem ligação ao servidor. Verifique o backend e a rede.'
+      );
     } finally {
       setLoading(false);
     }

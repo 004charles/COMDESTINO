@@ -7,7 +7,7 @@ from core.models import TimeStampedModel
 class User(AbstractUser):
     """Utilizador da plataforma Destino."""
 
-    phone = models.CharField("telefone", max_length=20, unique=True, blank=True)
+    phone = models.CharField("telefone", max_length=20, blank=True, default="")
     province = models.ForeignKey(
         "tourism.Provincia",
         on_delete=models.SET_NULL,
